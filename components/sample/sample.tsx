@@ -1,12 +1,4 @@
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Flex,
-  Image,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { AspectRatio, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { NasaPicture } from "services/sample.types";
 
