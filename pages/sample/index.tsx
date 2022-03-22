@@ -1,5 +1,5 @@
 import Sample from "components/sample/sample";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 import { NasaPicture } from "services/sample.types";
 import { SampleApi } from "services/sampleSvc";
 
@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const SamplePage = ({ sample }) => {
+const SamplePage = ({ sample }: { sample: NasaPicture }) => {
   console.log(sample);
   return (
     <div>
