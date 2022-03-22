@@ -12,6 +12,8 @@
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
     "@zeit/next-css": "^1.0.1",
+    "apisauce": "^2.1.5",
+    "axios": "^0.26.1",
     "next": "12.1.0",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.4",
