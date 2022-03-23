@@ -14,13 +14,8 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const SamplePage = ({ sample }: { sample: NasaPicture }) => {
-  console.log(sample);
-  return (
-    <div>
-      <Sample />
-    </div>
-  );
+const SamplePage = ({ sample }: { sample: NasaPicture[] }) => {
+  return <Sample sample={sample} />;
 };
 
 export default SamplePage;
