@@ -39,3 +39,5 @@ yarn-error.log*
 
 # enviroment
 .env
+
+next.config.dev.js
