@@ -12,14 +12,12 @@ const Sample = ({ sample }: { sample: NasaPicture[] }) => {
         {sample.map((item, index) => {
           return (
             <>
-              {/* <AspectRatio ratio={1}> */}
               <Image
                 key={index}
                 src={item.url}
                 alt={item.title}
                 objectFit={"cover"}
               />
-              {/* </AspectRatio> */}
               <Divider orientation="horizontal" />
             </>
           );
