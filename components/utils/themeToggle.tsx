@@ -21,7 +21,20 @@ export const ThemeToggle = () => {
 
   return (
     <HStack>
-      <Text fontSize={{ base: "20px", md: "20px", lg: "30px" }}>⛅</Text>
+      <Text
+        fontSize={{ base: "20px", md: "20px", lg: "30px" }}
+        onClick={() => {
+          // 다크모드일 경우에만 동작
+          if (flag) {
+            setFlg.off();
+            toggleColorMode();
+          }
+        }}
+        cursor={"grabbing"}
+      >
+        ⛅
+      </Text>
+
       <Switch
         colorScheme={"red"}
         size="lg"
@@ -31,7 +44,19 @@ export const ThemeToggle = () => {
           toggleColorMode();
         }}
       />
-      <Text fontSize={{ base: "20px", md: "20px", lg: "30px" }}>🌛</Text>
+      <Text
+        fontSize={{ base: "20px", md: "20px", lg: "30px" }}
+        onClick={() => {
+          // 라이트모드일 경우에만 동작
+          if (!flag) {
+            setFlg.on();
+            toggleColorMode();
+          }
+        }}
+        cursor={"grabbing"}
+      >
+        🌛
+      </Text>
     </HStack>
   );
 };
