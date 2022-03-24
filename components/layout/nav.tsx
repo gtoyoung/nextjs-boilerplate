@@ -23,8 +23,29 @@ import {
 import { ThemeToggle } from "components/utils/themeToggle";
 import NextLink from "next/link";
 import Profile from "../utils/profile";
+import { useAuth } from "context/authProvider";
+import { useEffect, useState } from "react";
+import { User } from "firebase/auth";
 
 export const NavHeader = () => {
+  const { user } = useAuth();
+  const [currentUser, setCurrentUser] = useState(null as User);
+
+  // 초기 유저 정보 딜레이 문제 처리를 위한 임시방편
+  useEffect(() => {
+    const localUser = localStorage.getItem("user");
+    if (localUser) {
+      const parsedUser: User = JSON.parse(localUser);
+      setCurrentUser(parsedUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, [user]);
+
   const { isOpen, onToggle } = useDisclosure();
   return (
     <Box position={"sticky"} top={0} zIndex={9999} opacity={0.8}>
@@ -74,7 +95,7 @@ export const NavHeader = () => {
           spacing={6}
         >
           <ThemeToggle />
-          <Profile />
+          <Profile user={currentUser} />
         </Stack>
       </Flex>
 

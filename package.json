@@ -19,6 +19,7 @@
     "apisauce": "^2.1.5",
     "axios": "^0.26.1",
     "esbuild-loader": "^2.18.0",
+    "firebase": "^9.6.9",
     "framer-motion": "6",
     "next": "12.1.0",
     "next-compose-plugins": "^2.2.1",

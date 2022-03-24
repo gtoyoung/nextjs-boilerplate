@@ -7,12 +7,14 @@ import {
   Heading,
   Text,
   Container,
+  useDisclosure,
 } from "@chakra-ui/react";
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 // And react-slick as our Carousel Lib
 import Slider from "react-slick";
 import { ImageProp } from "props/common";
+import { OverlayModal } from "./overayModal";
 // Settings for the slider
 const settings = {
   dots: true,
@@ -25,6 +27,7 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   afterChange: null,
+  // centerMode: true,
 };
 
 export const Carousel = ({
@@ -42,10 +45,19 @@ export const Carousel = ({
   const side = useBreakpointValue({ base: "30%", md: "40px" });
   // 다음 이미지를 가져올수 있는 포인트
   settings.afterChange = (index) => {
+    // 보고있는 이미지가 변경되었을 경우 해당이미지로 셋팅
+    setSelectedImage(imgList[index]);
     if (index === lastIndex) {
       callBackLoad();
     }
   };
+
+  // 모달창 Props 셋팅
+  const modalProps = useDisclosure();
+  // 선택한 이미지
+  const [selectedImage, setSelectedImage] = useState<ImageProp>(null);
+
+  // TODO 처음이미지를 로드하기 위한 방법이 필요함(첫번째 index 이미지는 afterChange이벤트에 잡히지 않음)
 
   return (
     <Box
@@ -106,11 +118,18 @@ export const Carousel = ({
               backgroundImage={`url(${card.src})`}
             >
               {/* This is the block you need to change, to customize the caption */}
-              <Container size="container.lg" height="600px" position="relative">
+              <Container
+                size="container.lg"
+                height="600px"
+                position="relative"
+                onClick={() => {
+                  modalProps.onOpen();
+                }}
+              >
                 <Stack
                   spacing={6}
                   w={"full"}
-                  maxW={"lg"}
+                  maxW={"md"}
                   position="absolute"
                   top="50%"
                   transform="translate(0, -50%)"
@@ -118,7 +137,10 @@ export const Carousel = ({
                   <Heading fontSize={{ base: "3xl", md: "3xl", lg: "4xl" }}>
                     {card.title}
                   </Heading>
-                  <Text fontSize={{ base: "sm", lg: "md" }} color="Highlight">
+                  <Text
+                    fontSize={{ base: "sm", md: "2xl", lg: "md" }}
+                    color="Highlight"
+                  >
                     {card.description}
                   </Text>
                 </Stack>
@@ -126,6 +148,7 @@ export const Carousel = ({
             </Box>
           ))}
       </Slider>
+      <OverlayModal props={modalProps} imgUrl={selectedImage?.src} />
     </Box>
   );
 };

@@ -6,6 +6,7 @@ import Router from "next/router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { NavHeader } from "components/layout/nav";
+import { AuthProvider } from "context/authProvider";
 
 const DEFAULT_SEO = {
   title: "Sample Page",
@@ -34,10 +35,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo {...DEFAULT_SEO} />
-      <ChakraProvider>
-        <NavHeader />
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <AuthProvider>
+        <ChakraProvider>
+          <NavHeader />
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </AuthProvider>
     </>
   );
 }

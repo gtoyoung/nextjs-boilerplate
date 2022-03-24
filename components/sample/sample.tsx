@@ -9,7 +9,6 @@ const sampleApi = new SampleApi();
 
 const Sample = ({ sample }: { sample: NasaPicture[] }) => {
   const [imgList, setImgeList] = useState(null as ImageProp[]);
-
   useEffect(() => {
     // 갤러리에 맞는 형식으로 변환
     var convertImgList = sample.map((item) => convertImageProps(item));
